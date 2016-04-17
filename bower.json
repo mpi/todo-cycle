@@ -1,0 +1,14 @@
+{
+  "name": "cycle.js",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "2.x.x",
+    "requirejs": "~2.1.5",
+    "components-bootstrap": "3.x.x",
+    "cycle": "^6.0.3",
+    "cycle-dom": "https://github.com/cyclejs/dom.git",
+    "cycle-http": "https://github.com/cyclejs/http.git",
+    "rxjs": "^4.1.0",
+    "lodash": "^4.11.1"
+  }
+}
