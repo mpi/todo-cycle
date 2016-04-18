@@ -29,7 +29,7 @@ require(
   function(Cycle, CycleDOM, CycleHTTP, main) {
     
     Cycle.run(main, {
-      HTTP: CycleHTTP.makeHTTPDriver(),
+      HTTP: CycleHTTP.makeHTTPDriver({eager: true}),
       DOM: CycleDOM.makeDOMDriver('#todo-list')
     });
     

@@ -21,7 +21,7 @@ api.use(function(req, res, next){
   next();
 });
 
-var todoList = [{itemId: 123, text: 'Ala ma kota', done: true}];
+var todoList = [];
 
 api.get('/todo-list', function(req, res){
   res.json(todoList).end();

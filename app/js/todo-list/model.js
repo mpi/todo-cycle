@@ -3,9 +3,9 @@
 define(['lodash', 'Rx'], function (_, Rx) {
 
   var actions = {
-    addItem: function(text){
+    addItem: function(text, itemId){
       return patch({
-        items: append({itemId: _.uniqueId(), done: false, text: text, inEdit: false }),
+        items: append({itemId: itemId, done: false, text: text, inEdit: false }),
         newItem: ''
       });
     },
@@ -90,7 +90,7 @@ define(['lodash', 'Rx'], function (_, Rx) {
       newItem: ''
     };
 
-    var add$ = intents.submit$.map(actions.addItem);
+    var add$ = intents.submit$.map(function(item) { return actions.addItem(item.text, item.itemId);});
     var newValue$ = intents.newValue$.map(actions.updateNewItem);
     var toggle$ = intents.toggle$.map(actions.toggleItem);
     var edit$ = intents.edit$.map(actions.editItem);

@@ -9,11 +9,15 @@ define(['cycle-dom', 'lodash'], function (CycleDOM, _) {
     var li = CycleDOM.li;
     var ul = CycleDOM.ul;
     var input = CycleDOM.input;
+    var h4 = CycleDOM.h4;
 
     var theme = {
 
       panel: function () {
         return div('.panel.panel-default', [div('.panel-body', _.toArray(arguments))]);
+      },
+      header: function (text) {
+        return h4('.page-header', [text]);
       },
       list: function () {
         return ul('.list-group', _.toArray(arguments));
@@ -30,6 +34,7 @@ define(['cycle-dom', 'lodash'], function (CycleDOM, _) {
       checkbox: function (options) {
         return input({
           type: 'checkbox',
+          style: {'margin-right': '10px'},
           checked: options.checked,
           attributes: {
             'data-item-id': options.id
@@ -44,11 +49,16 @@ define(['cycle-dom', 'lodash'], function (CycleDOM, _) {
 
     function render(model) {
       return theme.panel(
-        theme.list(model.items.map(renderListItem)),
+        theme.header('Things To-Do:'),
+        theme.list(model.items.length ? model.items.map(renderListItem) : renderNoItems()),
         theme.textInput(model.newItem, '.newItem')
       );
     }
 
+    function renderNoItems(){
+      return theme.listItem(['There are no items. Please, add some using input below!']);
+    }
+    
     function renderListItem(item) {
       return item.inEdit ? renderEditedListItem(item) : theme.listItem(
         theme.checkbox({
